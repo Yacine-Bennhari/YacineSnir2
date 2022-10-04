@@ -1,3 +1,5 @@
+# de la part de KORRI: Vous compte est public
+
 print ("Bienvenue au restaurant Pyfood\n") 
 
 print("Les entrées:")
