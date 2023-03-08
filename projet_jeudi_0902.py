@@ -1,3 +1,5 @@
+
+
 import sys
 import tkinter as tk
 from PySide6 import QtWidgets
@@ -155,11 +157,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtMultimedia import QMediaContent, QMediaPlayer
 from PyQt5.QtMultimediaWidgets import QVideoWidget
 
-class VideoPlayer(QtWidgets.QMainWindow):
+class LecteurVideo(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         self.resize(300,200)
-        self.setWindowTitle("Video Player")
+        self.setWindowTitle("Lecteur Vidéo")
         self.setWindowIcon(QtGui.QIcon(r"C:\Users\snir\Downloads\network.ico"))
 
         # Create a QVideoWidget to display the video
@@ -183,8 +185,13 @@ class VideoPlayer(QtWidgets.QMainWindow):
         self.addToolBar(QtCore.Qt.TopToolBarArea, self.toolbar)
         self.open_button = self.toolbar.addAction("Open")
         self.open_button.triggered.connect(self.open_video)
+
+        self.liste_chaines_button = self.toolbar.addAction("Liste des chaines")
+        self.liste_chaines_button.triggered.connect(self.open_video)
+
         self.play_button = self.toolbar.addAction("Play")
         self.play_button.triggered.connect(self.play_video)
+
         self.stop_button = self.toolbar.addAction("Stop")
         self.stop_button.triggered.connect(self.stop_video)
 
@@ -202,6 +209,9 @@ class VideoPlayer(QtWidgets.QMainWindow):
             video_file = self.file_dialog.selectedFiles()[0]
             self.media_player.setMedia(QMediaContent(QtCore.QUrl.fromLocalFile(video_file)))
 
+    def liste_chaine(self):
+        pass
+
     def play_video(self):
         """Start playing the current video."""
         self.media_player.play()
@@ -215,20 +225,13 @@ class VideoPlayer(QtWidgets.QMainWindow):
         player.hide()
         form.show()
 
-# if __name__ == "__main__":
-#     app = QtWidgets.QApplication(sys.argv)
-#     player = VideoPlayer()
-#     player.show()
-#     sys.exit(app.exec_())
-
-
 
 if __name__ == '__main__':
     # Create the Qt Application
     app = QtWidgets.QApplication([])
     # Create and show the form
     form = ConfigForm()
-    player = VideoPlayer()
+    player = LecteurVideo()
     player.hide()
     form.show()
     # Run the main Qt loop
